@@ -2,15 +2,17 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { Buttons, Container, Footer, InputGroup, Left, SubContainer } from "./styles";
+import { Link } from "react-router-dom";
 
 function SignUp() {
     const navigate = useNavigate();
     const { handleRegister } = useContext(UserContext);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [emailError, setEmailError] = useState<string | null>(null);
+    const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState<string | null>(null);
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
@@ -54,8 +56,8 @@ function SignUp() {
         setLoading(true);
 
         try {
-            await handleRegister(email, password);
-            alert('Cadastro realizado com sucesso!'); // Exemplo de feedback
+            await handleRegister(email, password, name);
+            alert('Cadastro realizado com sucesso!');
             navigate('/login');
         } catch (error) {
             console.error('Erro ao realizar o cadastro:', error);
@@ -75,7 +77,16 @@ function SignUp() {
                 </Left>
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <InputGroup>                    
+                        <InputGroup>
+                            <label htmlFor="text">Nome:</label>
+                            <input
+                                id="name"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                                          
                             <label htmlFor="email">E-mail ou telefone:</label>
                             <input
                                 id="email"
@@ -128,9 +139,9 @@ function SignUp() {
                     <option value="bengali">Bengali</option>
                     <option value="russian">Russo</option>
                 </select>
-                    <a href="/exemplo">Ajuda</a>
-                    <a href="/exemplo">Privacidade</a>
-                    <a href="/exemplo">Termos</a>
+                <Link to="/exemplo">Ajuda</Link>
+                <Link to="/exemplo">Privacidade</Link>
+                <Link to="/exemplo">Termos</Link>
             </Footer>
         </Container>
     );

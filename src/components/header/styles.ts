@@ -74,7 +74,7 @@ export const HeaderButton = styled.div`
     width: 180px;
     display: flex;
     align-items:center;
-    justify-content: space-around;
+    justify-content: space-between;
 `;
 
 export const HeaderLogin = styled.button`
@@ -91,4 +91,16 @@ export const HeaderLogin = styled.button`
     font-size: 15px;
     font-weight: 650;
     &:hover { background-color: #AFEEEE; }
+`;
+
+export const ExiteButton = styled.button`
+    height: 30px;
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    font-weight: 650;
+    font-size: 16px;
+    color: white;
+    background-color: #FF0000;
+    cursor: pointer;
 `;

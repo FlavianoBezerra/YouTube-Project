@@ -10,6 +10,7 @@ import LanguageIcon from '../../icons/language';
 import RestrictedMode from '../../icons/restrictedMode';
 import PlaceIcon from '../../icons/place';
 import KeyboardShortcutsIcon from '../../icons/keyboardShortcuts';
+import { Link } from 'react-router-dom';
 
 function DropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,10 +48,10 @@ function DropDownMenu() {
         <DropDownContainer show={ isOpen }>
           {menuItems.map((item, index) => (
             <li key={index}>
-              <a href="/exemplo">
+              <Link to="/exemplo">
                 {item.icon}
                 <span>{item.label}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </DropDownContainer>

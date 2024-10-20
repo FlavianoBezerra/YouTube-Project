@@ -34,10 +34,12 @@ export const Left = styled.div`
 `;
   
 export const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  
   label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-bottom: 5px;
     font-weight: bold;
   }
 

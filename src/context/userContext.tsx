@@ -27,20 +27,23 @@ export const UserStorage = ( {children}: any ) => {
         setUser({});
     }
 
-    const handleLogin = ( email: string, password: string) => {
-        api.post('/user/sign-in', {email, password}).then(({ data }) => {
+    const handleLogin = async (email: string, password: string) => {
+        try {
+            const { data } = await api.post('/user/sign-in', { email, password });
             setLogin(true);
-            //trazer dados
             localStorage.setItem('token', data.token);
             setToken(data.token);
             getUser(data.token);
-        }).catch ((error) => {
-            console.log('Não foi possível fazer o login,', error);
-        })
-    }
+            return data; // Retorna os dados se necessário
+        } catch (error) {
+            console.log('Não foi possível fazer o login:', error);
+            // Lança o erro para que o handleSubmit possa lidar com ele
+            throw error;
+        }
+    };    
 
-    const handleRegister = (email: string, password: string) => {
-        api.post('/user/sign-up', { email, password })
+    const handleRegister = (email: string, password: string, name: string) => {
+        api.post('/user/sign-up', { email, password, name })
             .then(({ data }) => {
                 localStorage.setItem('token', data.token);
                 setToken(data.token);

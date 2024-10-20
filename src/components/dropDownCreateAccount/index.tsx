@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Container, DropDownContainer } from './styles';
+import { Link } from 'react-router-dom';
 
 function DropDownCreateAccount() {
   const [isOpen, setIsOpen] = useState(false);
   const DropDownRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = (event: { target: any; }) => {
-    if (DropDownRef.current && !DropDownRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (DropDownRef.current && !DropDownRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -31,9 +32,9 @@ function DropDownCreateAccount() {
         <DropDownContainer show={ isOpen }>
           {menuItems.map((item, index) => (
             <li key={index}>
-              <a href="/registers">
+              <Link to="/registers">
                 <span>{item.label}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </DropDownContainer>

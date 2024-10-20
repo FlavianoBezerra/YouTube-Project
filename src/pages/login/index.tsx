@@ -3,6 +3,7 @@ import { UserContext } from "../../context/userContext";
 import { Buttons, Container, Footer, InputGroup, Left, Recuperar, SubContainer, VisitorMode } from "./styles";
 import DropDownCreateAccount from "../../components/dropDownCreateAccount";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login () {
     const {handleLogin} = useContext(UserContext);
@@ -39,24 +40,24 @@ function Login () {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+    
         if (!validateForm()) {
             return;
         }
-
+    
         setLoading(true);
-
+    
         try {
             await handleLogin(email, password);
             alert('Login realizado com sucesso!');
             navigate("/");
         } catch (error) {
             console.error('Erro ao realizar o login:', error);
-            setPasswordError('Não foi possível fazer o login. Tente novamente mais tarde.');
+            setPasswordError('Não foi possível fazer o login. Tente novamente.');
         } finally {
             setLoading(false);
         }
-    };
+    };  
 
     return(
         <Container>
@@ -117,9 +118,9 @@ function Login () {
                     <option value="bengali">Bengali</option>
                     <option value="russian">Russo</option>
                 </select>
-                    <a href="/exemplo">Ajuda</a>
-                    <a href="/exemplo">Privacidade</a>
-                    <a href="/exemplo">Termos</a>
+                <Link to="/exemplo">Ajuda</Link>
+                <Link to="/exemplo">Privacidade</Link>
+                <Link to="/exemplo">Termos</Link>
             </Footer>
         </Container>
     )

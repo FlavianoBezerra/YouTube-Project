@@ -37,22 +37,22 @@ export const UserStorage = ( {children}: any ) => {
             return data; // Retorna os dados se necessário
         } catch (error) {
             console.log('Não foi possível fazer o login:', error);
-            // Lança o erro para que o handleSubmit possa lidar com ele
-            throw error;
         }
     };    
 
     const handleRegister = (email: string, password: string, name: string) => {
-        api.post('/user/sign-up', { email, password, name })
+        return api.post('/user/sign-up', { email, password, name })
             .then(({ data }) => {
                 localStorage.setItem('token', data.token);
                 setToken(data.token);
                 getUser(data.token);
+                return data;
             })
             .catch((error) => {
                 console.log('Não foi possível fazer o cadastro', error);
+                throw error; // Rejeita a promise com o erro
             });
-    }
+    };    
 
     return(
         <UserContext.Provider value={{ login, user, handleLogin, logOut, handleRegister }}>

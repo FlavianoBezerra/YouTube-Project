@@ -3,10 +3,11 @@ import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { Buttons, Container, Footer, InputGroup, Left, SubContainer } from "./styles";
 import { Link } from "react-router-dom";
+import { AxiosError } from 'axios';
 
 function SignUp() {
     const navigate = useNavigate();
-    const { handleRegister } = useContext(UserContext);
+    const { handleRegister, handleLogin } = useContext(UserContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState<string | null>(null);
@@ -48,24 +49,40 @@ function SignUp() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+    
         if (!validateForm()) {
             return;
         }
-
+    
         setLoading(true);
-
+    
         try {
             await handleRegister(email, password, name);
             alert('Cadastro realizado com sucesso!');
-            navigate('/login');
-        } catch (error) {
+            handleLogin(email, password);
+            navigate('/');
+        } catch (error: unknown) {
             console.error('Erro ao realizar o cadastro:', error);
             setPasswordError('Não foi possível fazer o cadastro. Tente novamente mais tarde.');
+    
+            if (error instanceof AxiosError) {
+                if (error.response) {
+                    if (error.response.status === 409) {
+                        alert('Email já existente, tente outro!');
+                    } else {
+                        alert('Erro ao cadastrar, tente novamente!');
+                    }
+                } else {
+                    alert('Erro de conexão, tente novamente mais tarde!');
+                }
+            } else {
+                // Caso não seja um AxiosError
+                alert('Erro inesperado, tente novamente!');
+            }
         } finally {
             setLoading(false);
         }
-    };
+    };        
 
     return (
         <Container>

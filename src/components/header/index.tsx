@@ -31,7 +31,6 @@ function Header() {
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
-    console.log(setInputValue);
 
 
     return (

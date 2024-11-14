@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import DropDownIcon from '../../icons/dropDown';
 import { Container, DropDownContainer } from './styles';
 import SettingsIcon from '../../icons/settings';
@@ -10,9 +10,12 @@ import LanguageIcon from '../../icons/language';
 import RestrictedMode from '../../icons/restrictedMode';
 import PlaceIcon from '../../icons/place';
 import KeyboardShortcutsIcon from '../../icons/keyboardShortcuts';
+import NoImg from "../../assets/no-img.png";
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/userContext';
 
 function DropDownMenu() {
+  const { login } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const DropDownRef = useRef<HTMLDivElement | null>(null);
 
@@ -43,7 +46,7 @@ function DropDownMenu() {
 
   return (
     <Container ref={DropDownRef} onClick={ () => setIsOpen(!isOpen) }>      
-      <DropDownIcon/>     
+      {login ? <img alt="" src={NoImg} style={{width: '100%', borderRadius: '50%'}} /> : <DropDownIcon/>}     
       {isOpen && (
         <DropDownContainer show={ isOpen }>
           {menuItems.map((item, index) => (

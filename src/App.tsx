@@ -7,27 +7,29 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import SignUp from "./pages/registers";
 import Search from "./pages/search";
+import Studio from "./pages/studio";
 
 function App() {
   return (
-    <UserStorage>
-      <MenuProvider>
-        <CategoryProvider>
-          <SearchProvider>
-            <BrowserRouter>
-              <div className="App">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/registers" element={<SignUp />} />
-                  <Route path="/search" element={<Search />} />
-                </Routes>
-              </div>
-            </BrowserRouter>
-          </SearchProvider>
-        </CategoryProvider>
-      </MenuProvider>
-    </UserStorage>
+    <BrowserRouter>
+      <UserStorage>
+        <MenuProvider>
+          <CategoryProvider>
+            <SearchProvider>
+                <div className="App">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/registers" element={<SignUp />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/studio" element={<Studio />} />
+                  </Routes>
+                </div>
+            </SearchProvider>
+          </CategoryProvider>
+        </MenuProvider>
+      </UserStorage>    
+    </BrowserRouter>
   );
 }
 

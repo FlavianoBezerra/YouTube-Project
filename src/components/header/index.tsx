@@ -15,8 +15,8 @@ import HamburgerIcon from '../../assets/hamburger.png';
 import SearchIcon from "../../assets/search.png";
 import MicIcon from "../../assets/microfone-gravador.png";
 import LoginIcon from "../../icons/login";
+import StudioIcon from "../../icons/studio";
 import YouTubeLogo from "../../assets/YouTube-Logo.png";
-import NoImg from "../../assets/no-img.png";
 import { useMenuContext } from "../../context/menuContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
@@ -75,16 +75,19 @@ function Header() {
             </SearchContainer>
 
             <HeaderButton>
-                    <DropDownMenu />
                 {login?
                     <>
-                        <ButtonContainer >
-                        <img alt="" src={NoImg} style={{width: '100%', borderRadius: '50%'}} />
+                        <ButtonContainer onClick={() => navigate('/studio')}>
+                            <StudioIcon />
                         </ButtonContainer>
+                        <DropDownMenu />
                         <ExiteButton onClick={() => logOut()}>Sair</ExiteButton>
                     </>                    
                 :
-                    <HeaderLogin onClick={() => navigate('/login')}><LoginIcon/> Fazer Login</HeaderLogin>
+                    <>
+                        <DropDownMenu />
+                        <HeaderLogin onClick={() => navigate('/login')}><LoginIcon/> Fazer Login</HeaderLogin>                    
+                    </>
                 }
             </HeaderButton>
 

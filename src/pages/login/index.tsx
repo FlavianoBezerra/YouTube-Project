@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import { Buttons, Container, Footer, InputGroup, Left, Recuperar, SubContainer, VisitorMode } from "./styles";
 import DropDownCreateAccount from "../../components/dropDownCreateAccount";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Login () {
@@ -12,7 +11,6 @@ function Login () {
     const [emailError, setEmailError] = useState<string | null>(null);
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
 
 
     const isValidEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
@@ -50,7 +48,6 @@ function Login () {
         try {
             await handleLogin(email, password);
             alert('Login realizado com sucesso!');
-            navigate("/");
         } catch (error) {
             console.error('Erro ao realizar o login:', error);
             setPasswordError('Não foi possível fazer o login. Tente novamente.');
@@ -90,13 +87,6 @@ function Login () {
                             />
                             {passwordError && <span style={{color: 'red'}}>{passwordError}</span>}
                         </InputGroup>
-                        <Recuperar>
-                            <a href="/exemplo">Esqueceu seu e-mail?</a>
-                        </Recuperar>
-                        <VisitorMode>
-                            <p>Não está no seu computador? Use o modo visitante para fazer login com privacidade.</p>
-                            <a href="/exemplo">Saiba mais sobre como usar o Modo visitante</a>
-                        </VisitorMode>
                         <Buttons>
                             <div>
                                 <DropDownCreateAccount />
@@ -104,6 +94,13 @@ function Login () {
                             </div>
                         </Buttons>
                     </form>
+                    <Recuperar>
+                        <Link to="/exemplo">Esqueceu seu e-mail?</Link>
+                    </Recuperar>
+                    <VisitorMode>
+                        <p>Não está no seu computador? Use o modo visitante para fazer login com privacidade.</p>
+                        <Link to="/exemplo">Saiba mais sobre como usar o Modo visitante</Link>
+                    </VisitorMode>
                 </div>
             </SubContainer>
             <Footer>

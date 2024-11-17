@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react"
 import Menu from "../../components/menu"
-import { AddVideoButton, Buttons, CloseButton, Container, InputGroup, Modal, ModalContent, ModalTitle, StudioContainer, SubContainer, UserName } from "./styles"
+import { AddVideoButton, Buttons, CloseButton, Container, ContainerVideos, InputGroup, Modal, ModalContent, ModalTitle, StudioContainer, SubContainer, UserName } from "./styles"
 import Header from "../../components/header"
 import { UserContext } from "../../context/userContext"
 import StudioComponent from "../../components/studioComponent"
+import { useMenuContext } from "../../context/menuContext"
 
 function Studio() {
 
   interface Videos {
-    id: string
-    videoTitle: string
-    imageUrl: string
-    videoDescription: string
+    id: string;
+    videoTitle: string;
+    imageUrl: string;
     post_time: string
   }
 
@@ -24,6 +24,7 @@ function Studio() {
   const [videoTitleError, setVideoTitleError] = useState<string | null>(null);
   const [videoDescriptionError, setVideoDescriptionError] = useState<string | null>(null);
   const { token, user, userVideos, createVideos } = useContext(UserContext);
+  const { menuSize } = useMenuContext();
   const userID = user.id;
 
   const isValidImageUrl = (url: string) => /\.(jpeg|jpg|gif|png|bmp|webp|svg)$/.test(url);
@@ -179,24 +180,25 @@ function Studio() {
               </form>
             </ModalContent>
           </Modal>
-          {Array.isArray(userVideos) ? (
-            userVideos.length > 0 ? (
-              userVideos.map((video: Videos) => (
-                <StudioComponent
-                  thumbnail={video.imageUrl}
-                  title={video.videoTitle}
-                  channelName={user && user.name ? user.name : 'Erro ao buscar nome!'}
-                  details={getTimeDifference(video.post_time)}
-                  key={video.id}
-                />
-              ))
+          <ContainerVideos menuSize={menuSize}>
+            {Array.isArray(userVideos) ? (
+              userVideos.length > 0 ? (
+                userVideos.map((video: Videos) => (
+                  <StudioComponent
+                    thumbnail={video.imageUrl}
+                    title={video.videoTitle}
+                    channelName={user && user.name ? user.name : 'Erro ao buscar nome!'}
+                    details={getTimeDifference(video.post_time)}
+                    key={video.id}
+                  />
+                ))
+              ) : (
+                <h1>Esse canal não possui vídeos</h1>
+              )
             ) : (
               <h1>Esse canal não possui vídeos</h1>
-            )
-          ) : (
-            <h1>Esse canal não possui vídeos</h1>
-          )}
-
+            )}
+          </ContainerVideos>
         </Container>
       </SubContainer>
     </StudioContainer>

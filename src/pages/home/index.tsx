@@ -1,5 +1,5 @@
 import VideoComponent from "../../components/videoComponent";
-import { Container3, Container1, Container2, ContainerVideos, Description, ShortsContainer, ShortsVideos } from "./styles";
+import { Container, HomeContainer, SubContainer, ContainerVideos, Description, ShortsContainer, ShortsVideos } from "./styles";
 import { useMenuContext } from "../../context/menuContext";
 import RedShortsIcon from "../../icons/redShorts";
 import ShortsComponet from "../../components/shortsComponent";
@@ -105,11 +105,11 @@ function Home () {
     }
 
     return(
-      <Container1>
+      <HomeContainer>
         <Header/>
-        <Container2>
+        <SubContainer>
           <Menu/>
-          <Container3>
+          <Container>
             <VideoCategory/>
             <ContainerVideos menuSize={menuSize}>
               {videos.map((video) => (
@@ -138,9 +138,9 @@ function Home () {
                 <ShortsComponet/>
               </ShortsVideos>
             </ShortsContainer>
-          </Container3>
-        </Container2>
-      </Container1>
+          </Container>
+        </SubContainer>
+      </HomeContainer>
     )
 }
 

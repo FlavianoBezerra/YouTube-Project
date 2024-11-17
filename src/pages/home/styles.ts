@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-export const Container1 = styled.div`
+export const HomeContainer = styled.div`
     width: 100%;
 `;
 
-export const Container2 = styled.div`
+export const SubContainer = styled.div`
     width: 100%;
     display: flex;
 `;
 
-export const Container3 = styled.div`
+export const Container = styled.div`
     width: 100%;
     max-width: 1600px;
     padding: 55px 25px 10px 25px;

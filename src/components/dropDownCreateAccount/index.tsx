@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { Container, DropDownContainer } from './styles';
-import { Link } from 'react-router-dom';
+import { Container, DropDownContainer, InitialText, MenuItem } from './styles';
+import { useNavigate } from 'react-router-dom';
 
 function DropDownCreateAccount() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const DropDownRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (DropDownRef.current && !DropDownRef.current.contains(event.target as Node)) {
+  const handleClickOutside = (event: { target: any }) => {
+    if (DropDownRef.current && !DropDownRef.current.contains(event.target )) {
       setIsOpen(false);
     }
   };
@@ -20,22 +21,20 @@ function DropDownCreateAccount() {
   }, []);
 
   const menuItems = [
-    { label: 'Para uso pessoal' },
-    { label: 'Para uma criança' },
-    { label: 'Para trabalho ou empresa' }
+    { label: 'Para uso pessoal', link: '/registers' },
+    { label: 'Para uma criança', link: '/registers' },
+    { label: 'Para trabalho ou empresa', link: '/registers' }
   ];
 
   return (
     <Container ref={DropDownRef} onClick={ () => setIsOpen(!isOpen) }>      
-      <span className='icon'>Criar conta</span>    
+      <InitialText>Criar conta</InitialText>    
       {isOpen && (
         <DropDownContainer show={ isOpen }>
           {menuItems.map((item, index) => (
-            <li key={index}>
-              <Link to="/registers">
-                <span>{item.label}</span>
-              </Link>
-            </li>
+            <MenuItem key={index} onClick={() => navigate(item.link)}>
+              <span style={{ marginLeft: '10px' }}>{item.label}</span>
+            </MenuItem>
           ))}
         </DropDownContainer>
         

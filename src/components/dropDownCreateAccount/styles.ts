@@ -6,16 +6,16 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+  
+export const InitialText = styled.span`
+  font-size: 16px;
+  font-weight: 600;
+  color: #0b57d0;
+  cursor: pointer;
+  margin-left: 10px;
+`;
 
-  .icon {
-    font-size: 16px;
-    font-weight: 600;
-    color: #0b57d0;
-    cursor: pointer;
-  }
-  `;  
-  
-  
 export const DropDownContainer = styled.ul<{ show: boolean }>`
   width: 240px;
   position: absolute;
@@ -26,31 +26,23 @@ export const DropDownContainer = styled.ul<{ show: boolean }>`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   padding: 5px;
   list-style: none;
-  border-radius: 20px;
+  border-radius: 10px;
   display: ${({ show }) => (show ? "block" : "none")};
+`;
 
-  li {
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 10px;
-    padding: 2px 15px;
-    box-sizing: border-box;
-    font-size:14px;
-    font-weight: 650;
-    
-    &:hover {
-        background-color: #dcdcdc;
-    }
-  }
-  li a {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    color: #000;
-    text-decoration: none;
-  }
+export const MenuItem = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  height: 45px;
+  box-sizing: border-box;
+  font-size:14px;
+  font-weight: 650;
   
-  span {
-    margin-left: 10px;
+  &:hover {
+    background-color: #dcdcdc;
   }
 `;

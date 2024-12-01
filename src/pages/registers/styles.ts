@@ -13,70 +13,66 @@ export const SubContainer = styled.div`
   flex-wrap: wrap;
   width: 90%;
   margin: 10px auto;
-  padding: 20px;
+  padding: 20px 50px;
   background-color: #f9f9f9;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
 `;
 
 export const Left = styled.div`
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  
-  img {
-    width: 200px;
-    height: 40px;
-    margin-right: 10px;
-  }
+`;
+
+export const LeftImg = styled.img`
+  width: 200px;
+  height: 40px;
+  margin-right: 10px;
 `;
 
 
 export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
-  
-  label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    
-    input {
-      width: 400px;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      outline: none;
-    }
-    `;
+`;
 
-export const Buttons = styled.div`
+export const Label = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+`;
+
+export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin: 20px 0;
-    
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-    
-  button {
-    height: 48px;
-    padding: 0 16px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    background: #0b57d0;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-  }
+`;
+
+export const Button = styled.button`
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #0b57d0;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
 `;
 
 export const Footer = styled.div`
@@ -89,19 +85,19 @@ export const Footer = styled.div`
   font-size: 14px;
   font-weight: 600;
 
-  select {
-    width: auto;
-    height: 30px;
-    padding: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-
   a {
     text-decoration: none;
     color: #000;
   }
+`;
+
+export const Select = styled.select`
+  width: auto;
+  height: 30px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 `;

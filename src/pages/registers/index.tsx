@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
-import { Buttons, Container, Footer, InputGroup, Left, SubContainer } from "./styles";
+import { Button, ButtonContainer, Container, Footer, Input, InputGroup, Label, Left, LeftImg, Select, SubContainer } from "./styles";
 import { Link } from "react-router-dom";
 import { AxiosError } from 'axios';
 
@@ -88,64 +88,61 @@ function SignUp() {
         <Container>
             <SubContainer>
                 <Left>
-                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" />
+                    <LeftImg src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" />
                     <h1>Criar uma conta do google</h1>
                     <p>Insira seus dados</p>
                 </Left>
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <InputGroup>
-                            <label htmlFor="text">Nome:</label>
-                            <input
-                                id="name"
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                            />
+                <div style={{ width: '50%' }}>
+                    <InputGroup onSubmit={handleSubmit}>
+                        <Label htmlFor="text">Nome:</Label>
+                        <Input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
                                           
-                            <label htmlFor="email">E-mail ou telefone:</label>
-                            <input
-                                id="email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                            {emailError && <span style={{ color: "red" }}>{emailError}</span>}
+                        <Label htmlFor="email">E-mail ou telefone:</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        {emailError && <span style={{ color: "red" }}>{emailError}</span>}
 
-                            <label htmlFor="password">Senha:</label>
-                            <input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                            {passwordError && <span style={{ color: "red" }}>{passwordError}</span>}
+                        <Label htmlFor="password">Senha:</Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        {passwordError && <span style={{ color: "red" }}>{passwordError}</span>}
 
-                            <label htmlFor="confirm-password">Confirmar Senha:</label>
-                            <input
-                                id="confirm-password"
-                                type="password"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                required
-                            />
-                            {confirmPasswordError && <span style={{ color: "red" }}>{confirmPasswordError}</span>}
-                        </InputGroup>
-                        <Buttons>
-                            <div>
-                                <button type="submit" disabled={loading}>
-                                    {loading ? 'Criando conta...' : 'Avançar'}
-                                </button>
-                            </div>
-                        </Buttons>
-                    </form>
+                        <Label htmlFor="confirm-password">Confirmar Senha:</Label>
+                        <Input
+                            id="confirm-password"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                        {confirmPasswordError && <span style={{ color: "red" }}>{confirmPasswordError}</span>}
+                        
+                        <ButtonContainer>
+                            <Button type="submit" disabled={loading}>
+                                {loading ? 'Criando conta...' : 'Avançar'}
+                            </Button>
+                        </ButtonContainer>
+                    </InputGroup>
                 </div>
             </SubContainer>
             <Footer>
-                <select>
+                <Select>
                     <option value="pt-BR">Português (BR)</option>
                     <option value="English">Inglês</option>
                     <option value="mandarin">Mandarim</option>
@@ -155,7 +152,7 @@ function SignUp() {
                     <option value="portuguese">Português</option>
                     <option value="bengali">Bengali</option>
                     <option value="russian">Russo</option>
-                </select>
+                </Select>
                 <Link to="/exemplo">Ajuda</Link>
                 <Link to="/exemplo">Privacidade</Link>
                 <Link to="/exemplo">Termos</Link>

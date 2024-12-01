@@ -92,15 +92,3 @@ export const HeaderLogin = styled.button`
     font-weight: 650;
     &:hover { background-color: #AFEEEE; }
 `;
-
-export const ExiteButton = styled.button`
-    height: 30px;
-    width: 40%;
-    border: none;
-    border-radius: 5px;
-    font-weight: 650;
-    font-size: 16px;
-    color: white;
-    background-color: #FF0000;
-    cursor: pointer;
-`;

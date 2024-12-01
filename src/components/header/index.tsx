@@ -8,9 +8,9 @@ import {
     SearchInput,
     SearchButton,
     HeaderButton,
-    HeaderLogin,
-    ExiteButton
+    HeaderLogin
 } from "./styles";
+import SinoIcon from '../../assets/sino.png';
 import HamburgerIcon from '../../assets/hamburger.png';
 import SearchIcon from "../../assets/search.png";
 import MicIcon from "../../assets/microfone-gravador.png";
@@ -26,7 +26,7 @@ import { useSearchContext } from "../../context/searchContext";
 
 function Header() {
     const { setSearch } = useSearchContext();
-    const { login, logOut } = useContext(UserContext);
+    const { login } = useContext(UserContext);
     const { menuSize, setMenuSize } = useMenuContext();
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
@@ -80,8 +80,10 @@ function Header() {
                         <ButtonContainer onClick={() => navigate('/studio')}>
                             <StudioIcon />
                         </ButtonContainer>
+                        <ButtonContainer>
+                            <ButtonIcon alt="" src={SinoIcon} />
+                        </ButtonContainer>
                         <DropDownMenu />
-                        <ExiteButton onClick={() => logOut()}>Sair</ExiteButton>
                     </>                    
                 :
                     <>

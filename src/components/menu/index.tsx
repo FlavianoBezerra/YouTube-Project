@@ -33,10 +33,13 @@ import SettingsIcon from "../../icons/settings";
 import ReportingHistoryIcon from "../../icons/reportingHistory";
 import HelpIcon from "../../icons/help";
 import SendFeedbackIcon from "../../icons/sendFeedback";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
 function Menu () {
     const { menuSize } = useMenuContext();
     const navigate = useNavigate();
+    const { login } = useContext(UserContext);
 
     const boxOne = [
         { id: 1, name: 'Início', link: '/', icon: <StartIcon/> },
@@ -103,12 +106,16 @@ function Menu () {
                             </MenuItem>
                         ))}
                     </SubContainer>
-                    <SubContainer menuSize={menuSize}>
-                        <ContainerLogin>
-                            <TextLogin>Faça login para curtir vídeos, comentar e se inscrever</TextLogin>
-                            <MenuLogin onClick={() => navigate('/login')}><LoginIcon/> Fazer login</MenuLogin>
-                        </ContainerLogin>
-                    </SubContainer>
+                    {login ?
+                        null
+                    :  
+                        <SubContainer menuSize={menuSize}>
+                            <ContainerLogin>
+                                <TextLogin>Faça login para curtir vídeos, comentar e se inscrever</TextLogin>
+                                <MenuLogin onClick={() => navigate('/login')}><LoginIcon/> Fazer login</MenuLogin>
+                            </ContainerLogin>
+                        </SubContainer>
+                    }
                     <SubContainer menuSize={menuSize}>
                         <Description>
                             <h3>Explorar</h3>

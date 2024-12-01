@@ -92,8 +92,10 @@ export const UserStorage = ({ children }: any) => {
             setToken(data.token);
             getUser(data.token);
             navigate('/');
+            alert('Login realizado com sucesso!');
             return data;
         } catch (error) {
+            alert('Não foi possível fazer o login');
             console.log('Não foi possível fazer o login:', error);
         }
     };

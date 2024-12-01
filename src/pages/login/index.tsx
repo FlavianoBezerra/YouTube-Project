@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
-import { Buttons, Container, Footer, InputGroup, Left, Recuperar, SubContainer, VisitorMode } from "./styles";
+import { Button, ButtonContainer, Container, Footer, Input, InputGroup, Label, Left, LeftImg, Recuperar, Select, SubContainer, UsedSpace, VisitorMode } from "./styles";
 import DropDownCreateAccount from "../../components/dropDownCreateAccount";
 import { Link } from "react-router-dom";
 
@@ -47,7 +47,6 @@ function Login () {
     
         try {
             await handleLogin(email, password);
-            alert('Login realizado com sucesso!');
         } catch (error) {
             console.error('Erro ao realizar o login:', error);
             setPasswordError('Não foi possível fazer o login. Tente novamente.');
@@ -60,40 +59,39 @@ function Login () {
         <Container>
             <SubContainer>
                 <Left>
-                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" />
+                    <LeftImg src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" />
                     <h1>Fazer login</h1>
                     <p>Prosseguir no YouTube</p>
                 </Left>
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <InputGroup>
-                            <label htmlFor="email">E-mail ou telefone</label>
-                            <input
-                                id="email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                            {emailError && <span style={{color: 'red'}}>{emailError}</span>}
+                <div style={{ width: '50%' }}>
+                    <InputGroup onSubmit={handleSubmit}>
+                        <Label htmlFor="email">E-mail ou telefone</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        {emailError && <span style={{color: 'red'}}>{emailError}</span>}
 
-                            <label htmlFor="password">Senha</label>
-                            <input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                            {passwordError && <span style={{color: 'red'}}>{passwordError}</span>}
-                        </InputGroup>
-                        <Buttons>
-                            <div>
+                        <Label htmlFor="password">Senha</Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        {passwordError && <span style={{color: 'red'}}>{passwordError}</span>}
+
+                        <ButtonContainer>
+                            <UsedSpace>
                                 <DropDownCreateAccount />
-                                <button className="enter" type="submit" disabled={loading}>Entrar</button>
-                            </div>
-                        </Buttons>
-                    </form>
+                                <Button type="submit" disabled={loading}>Entrar</Button>
+                            </UsedSpace>
+                        </ButtonContainer>
+                    </InputGroup>
                     <Recuperar>
                         <Link to="/exemplo">Esqueceu seu e-mail?</Link>
                     </Recuperar>
@@ -104,7 +102,7 @@ function Login () {
                 </div>
             </SubContainer>
             <Footer>
-                <select>
+                <Select>
                     <option value="pt-BR">Português (BR)</option>
                     <option value="English">Inglês</option>
                     <option value="mandarin">Mandarim</option>
@@ -114,7 +112,7 @@ function Login () {
                     <option value="portuguese">Português</option>
                     <option value="bengali">Bengali</option>
                     <option value="russian">Russo</option>
-                </select>
+                </Select>
                 <Link to="/exemplo">Ajuda</Link>
                 <Link to="/exemplo">Privacidade</Link>
                 <Link to="/exemplo">Termos</Link>

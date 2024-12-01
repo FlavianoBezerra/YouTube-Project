@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import DropDownIcon from '../../icons/dropDown';
-import { Container, DropDownContainer } from './styles';
+import { Container, Divider, DropDownContainer, DropDownImg, Img, Left, MenuItem, Text, UserInfo } from './styles';
 import SettingsIcon from '../../icons/settings';
 import HelpIcon from '../../icons/help';
 import SendFeedbackIcon from '../../icons/sendFeedback';
@@ -22,13 +22,13 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function DropDownMenu() {
-  const { login, user } = useContext(UserContext);
+  const { login, user, logOut } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const DropDownRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
-  const handleClickOutside = (event: { target: any; }) => {
-    if (DropDownRef.current && !DropDownRef.current.contains(event.target)) {
+  const handleClickOutside = (event: { target: any }) => {
+    if (DropDownRef.current && !DropDownRef.current.contains( event.target )) {
       setIsOpen(false);
     }
   };
@@ -42,50 +42,56 @@ function DropDownMenu() {
 
   const menuItems = [
     { icon: <GoogleAccountIcon/>, link: '/google_account', label: 'Conta do Google' },
-    { icon: <ChangeAccountIcon/>, link: '/change_account', label: 'Mudar de conta', next: <img style={{ width: '25px' }} src={NextButton} alt='Next'/> },
-    { icon: <LeaveIcon/>, link: '/leave', label: 'Sair', divider: <div className='divider'></div> },
+    { icon: <ChangeAccountIcon/>, link: '/change_account', label: 'Mudar de conta', next: <Img src={NextButton} alt='Next'/> },
+    { icon: <LeaveIcon/>, link: () => logOut(), label: 'Sair', divider: <Divider /> },
     { icon: <YoutubeStudioIcon/>, link: '/youtube_studio', label: 'YouTube Studio' },
-    { icon: <PurchasesAndSubscriptionIcon/>, link: '/purchases_subscription', label: 'Compras e assinaturas', divider: <div className='divider'></div> },
+    { icon: <PurchasesAndSubscriptionIcon/>, link: '/purchases_subscription', label: 'Compras e assinaturas', divider: <Divider /> },
     { icon: <YourDataIcon/>, link: '/your_datas', label: 'Seus dados no YouTube' },
-    { icon: <AppearanceIcon/>, link: '/appearance', label: 'Tema do dispositivo', next: <img style={{ width: '25px' }} src={NextButton} alt='Next'/> },
-    { icon: <LanguageIcon/>, link: '/language', label: 'Idioma: Português', next: <img style={{ width: '25px' }} src={NextButton} alt='Next'/> },
-    { icon: <RestrictedMode/>, link: '/restricted_mode', label: 'Modo restrito: desativado', next: <img style={{ width: '25px' }} src={NextButton} alt='Next'/> },
-    { icon: <PlaceIcon/>, link: '/place', label: 'Local: Brasil', next: <img style={{ width: '25px' }} src={NextButton} alt='Next'/> },
-    { icon: <KeyboardShortcutsIcon/>, link: '/keyboard_shortcuts', label: 'Atalhos do teclado', divider: <div className='divider'></div> },
-    { icon: <SettingsIcon/>, link: '/settings', label: 'Configurações', divider: <div className='divider'></div> },
+    { icon: <AppearanceIcon/>, link: '/appearance', label: 'Tema do dispositivo', next: <Img src={NextButton} alt='Next'/> },
+    { icon: <LanguageIcon/>, link: '/language', label: 'Idioma: Português', next: <Img src={NextButton} alt='Next'/> },
+    { icon: <RestrictedMode/>, link: '/restricted_mode', label: 'Modo restrito: desativado', next: <Img src={NextButton} alt='Next'/> },
+    { icon: <PlaceIcon/>, link: '/place', label: 'Local: Brasil', next: <Img src={NextButton} alt='Next'/> },
+    { icon: <KeyboardShortcutsIcon/>, link: '/keyboard_shortcuts', label: 'Atalhos do teclado', divider: <Divider /> },
+    { icon: <SettingsIcon/>, link: '/settings', label: 'Configurações', divider: <Divider /> },
     { icon: <HelpIcon/>, link: '/help', label: 'Ajuda' },
     { icon: <SendFeedbackIcon/>, link: '/send_feedback', label: 'Enviar feedback' },
   ];
 
   return (
     <Container ref={DropDownRef} onClick={ () => setIsOpen(!isOpen) }>      
-      {login ? <img alt="" src={NoImg} style={{width: '100%', borderRadius: '50%'}} /> : <DropDownIcon/>}     
+      {login ? <DropDownImg alt="No img" src={NoImg} /> : <DropDownIcon/>}     
       {isOpen && (
         <DropDownContainer show={ isOpen }>
           {login ? (
             <>
-              <div style={{ height: '60px', display: 'flex', alignItems: 'center', padding: '12px' }}>
-                <img style={{ height: '40px', borderRadius: '50%' }} src={NoImg} alt='NOt imagem'/>
+              <UserInfo >
+                <DropDownImg src={NoImg} alt='NOt imagem'/>
                 <div>
-                  <span>{user && user.name ? user.name : 'Erro ao buscar nome'}</span><br />
-                  <span>@{user && user.name ? user.name : 'Erro ao buscar nome'}</span><br />
-                  <Link to='/exemplo'>Acessar seu canal</Link>
+                  <Text>{user && user.name ? user.name : 'Erro ao buscar nome'}</Text><br />
+                  <Text>@{user && user.name ? user.name : 'Erro ao buscar nome'}</Text><br />
+                  <Link to='/your_channel'>Acessar seu canal</Link>
                 </div>
-              </div>
-              <div className='divider'></div>            
+              </UserInfo>
+              <Divider />            
             </>
             ) : null
           }
           {menuItems.map((item, index) => (
             <>
-              <li key={index} onClick={() => navigate(item.link)}>
-                <div style={{ display: 'flex' }}>
+              <MenuItem key={index} onClick={() => {
+                if (typeof item.link === 'function') {
+                  item.link();
+                } else {
+                  navigate(item.link);
+                }
+              }}>
+                <Left>
                   {item.icon}
-                  <span>{item.label}</span>
-                </div>
-                <div>{item.next}</div>
-              </li>
-              <div>{item.divider}</div>            
+                  <span style={{ marginLeft: '10px' }}>{item.label}</span>
+                </Left>
+                {item.next}
+              </MenuItem>
+              {item.divider}           
             </>
           ))}
         </DropDownContainer>

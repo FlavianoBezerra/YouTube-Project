@@ -1,26 +1,27 @@
 import styled from "styled-components";
 
 export const StudioContainer = styled.div`
-    width: 100%;
+  width: 100%;
 `;
 
 export const SubContainer = styled.div`
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 `;
 
 export const Container = styled.div`
-    width: 100%;
-    max-width: 1600px;
-    padding: 55px 25px 10px 25px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 1600px;
+  padding: 55px 25px 10px 25px;
+  box-sizing: border-box;
 `;
 
-export const ContainerVideos = styled.div<{ menuSize: boolean }>`
-    display: grid;
-    grid-template-columns: ${({ menuSize }) => menuSize? 'repeat(3, 1fr)' : 'repeat(4, 1fr)'};
-    column-gap: 20px;
-    row-gap: 50px;
+export const ContainerVideos = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  row-gap: 50px;
+  margin: 20px 0;
 `;
 
 export const UserName = styled.h1`
@@ -59,51 +60,51 @@ export const Modal = styled.div<{ hideModal: boolean }>`
   align-items: center;
   justify-content: center;
 `;
+
 export const ModalContent = styled.div`
   width: 50vw;
   height: 80vh;
   background-color: white;
   border-radius: 12px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  padding: 20px 45px;
+  padding: 50px;
   box-sizing: border-box;
 `;
 
-export const InputGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-  }
+export const ModalTitle = styled.h1`
+  margin: 0;
+  text-align: center;
 `;
 
-export const Buttons = styled.div`
+export const InputGroup = styled.form`
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 20px;
+  flex-direction: column;
+`;
 
-  div {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+export const Label = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+`;
 
-  .enter {
+export const Input = styled.input`
+  width: 96%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 20px;
+`;
+
+export const Button = styled.button`
   height: 48px;
+  width: 100%;
   padding: 0 16px;
   font-size: 16px;
   font-weight: 600;
@@ -111,13 +112,7 @@ export const Buttons = styled.div`
   background: #0b57d0;
   border-radius: 50px;
   border: none;
-  cursor: pointer;
-  }
-`;
-
-export const ModalTitle = styled.h1`
-  margin: 0;
-  text-align: center;
+  cursor: pointer
 `;
 
 export const CloseButton = styled.button`

@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import Menu from "../../components/menu"
-import { AddVideoButton, Buttons, CloseButton, Container, ContainerVideos, InputGroup, Modal, ModalContent, ModalTitle, StudioContainer, SubContainer, UserName } from "./styles"
+import { AddVideoButton, Button, ButtonContainer, CloseButton, Container, ContainerVideos, Input, InputGroup, Label, Modal, ModalContent, ModalTitle, StudioContainer, SubContainer, UserName } from "./styles"
 import Header from "../../components/header"
 import { UserContext } from "../../context/userContext"
 import StudioComponent from "../../components/studioComponent"
-import { useMenuContext } from "../../context/menuContext"
 
 function Studio() {
 
@@ -24,7 +23,9 @@ function Studio() {
   const [videoTitleError, setVideoTitleError] = useState<string | null>(null);
   const [videoDescriptionError, setVideoDescriptionError] = useState<string | null>(null);
   const { token, user, userVideos, createVideos } = useContext(UserContext);
-  const { menuSize } = useMenuContext();
+  const imageRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLInputElement>(null);
   const userID = user.id;
 
   const isValidImageUrl = (url: string) => /\.(jpeg|jpg|gif|png|bmp|webp|svg)$/.test(url);
@@ -90,11 +91,32 @@ function Studio() {
     } finally {
         setLoading(false);
     }
-};  
+  };  
+
+  const clearInputs = () => {
+    if (imageRef.current) {
+      imageRef.current.value = ''
+      imageRef.current.focus()
+      setImageUrl('')
+    }
+    if (titleRef.current) {
+      titleRef.current.value = ''
+      setVideoTitle('')
+    }
+    if (descriptionRef.current) {
+      descriptionRef.current.value = ''
+      setVideoDescription('')
+    }
+
+    setImageUrlError(null);
+    setVideoTitleError(null);
+    setVideoDescriptionError(null);
+  }
 
   const closeModal = () => {
-    setHideModal(true)
-  };
+    clearInputs();
+    setHideModal(true);
+  }
 
   function getTimeDifference(post_time: string): string {
     const diff = Date.now() - Date.parse(post_time);
@@ -140,47 +162,47 @@ function Studio() {
             <ModalContent>
               <CloseButton onClick={closeModal}>X</CloseButton>
               <ModalTitle>Enviar novo vídeo</ModalTitle>
-              <form onSubmit={handleSubmit}>
-                <InputGroup>
-                  <label htmlFor="url">URL do vídeo</label>              
-                  <input
-                    id="url"
-                    type="text"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    required
-                  />
-                  {imageUrlError && <span style={{ color: 'red' }}>{imageUrlError}</span>}
+              <InputGroup onSubmit={handleSubmit}>
+                <Label htmlFor="url">URL do vídeo</Label>              
+                <Input
+                  id="url"
+                  type="text"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  ref={imageRef}
+                  required
+                />
+                {imageUrlError && <span style={{ color: 'red' }}>{imageUrlError}</span>}
 
-                  <label htmlFor="title">Título do vídeo</label>
-                  <input
-                    id="title"
-                    type="text"
-                    value={videoTitle}
-                    onChange={(e) => setVideoTitle(e.target.value)}
-                    required
-                  />
-                  {videoTitleError && <span style={{ color: 'red' }}>{videoTitleError}</span>}
+                <Label htmlFor="title">Título do vídeo</Label>
+                <Input
+                  id="title"
+                  type="text"
+                  value={videoTitle}
+                  onChange={(e) => setVideoTitle(e.target.value)}
+                  ref={titleRef}
+                  required
+                />
+                {videoTitleError && <span style={{ color: 'red' }}>{videoTitleError}</span>}
 
-                  <label htmlFor="description">Descrição do vídeo</label>
-                  <input
-                    id="description"
-                    type="text"
-                    value={videoDescription}
-                    onChange={(e) => setVideoDescription(e.target.value)}
-                    required
-                  />
-                  {videoDescriptionError && <span style={{ color: 'red' }}>{videoDescriptionError}</span>}
-                </InputGroup>
-                <Buttons>
-                  <div>
-                    <button className="enter" type="submit" disabled={loading}>Adicionar video</button>
-                  </div>
-                </Buttons>
-              </form>
+                <Label htmlFor="description">Descrição do vídeo</Label>
+                <Input
+                  id="description"
+                  type="text"
+                  value={videoDescription}
+                  onChange={(e) => setVideoDescription(e.target.value)}
+                  ref={descriptionRef}
+                  required
+                />
+                {videoDescriptionError && <span style={{ color: 'red' }}>{videoDescriptionError}</span>}
+           
+                <ButtonContainer>
+                  <Button className="enter" type="submit" disabled={loading}>Adicionar video</Button>                  
+                </ButtonContainer>
+              </InputGroup>
             </ModalContent>
           </Modal>
-          <ContainerVideos menuSize={menuSize}>
+          <ContainerVideos>
             {Array.isArray(userVideos) ? (
               userVideos.length > 0 ? (
                 userVideos.map((video: Videos) => (
@@ -193,7 +215,11 @@ function Studio() {
                   />
                 ))
               ) : (
-                <h1>Esse canal não possui vídeos</h1>
+                <>                
+                  <div></div>
+                  <h2>Esse canal não possui vídeos</h2>
+                  <div></div>
+                </>
               )
             ) : (
               <h1>Esse canal não possui vídeos</h1>

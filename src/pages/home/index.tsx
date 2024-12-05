@@ -46,7 +46,8 @@ function Home () {
     }, [categoryId]);
 
 
-    const api_key = 'AIzaSyAKhHheugI2-xT65wMaqKl-URd1xJxHf4k';
+    const api_key = process.env.REACT_APP_API_KEY;
+    //Apenas como treinamento, não use chaves privadas no front-end, pois elas estarão visíveis no navegador.
     const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${api_key}`;
 
 

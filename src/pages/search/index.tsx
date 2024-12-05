@@ -36,7 +36,8 @@ function Search () {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
-  const api_key = 'AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg';
+  const api_key = process.env.REACT_APP_API_KEY;
+  //Apenas como treinamento, não use chaves privadas no front-end, pois elas estarão visíveis no navegador.
   const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${search}&maxResults=48&&key=${api_key}`;
 
   async function load() {

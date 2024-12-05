@@ -1,23 +1,31 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  max-width: 1600px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  height: 100%;
 `;
 
 export const SubContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: center;
   width: 90%;
   margin: 10px auto;
-  padding: 20px 50px;
+  padding: 20px 40px;
   background-color: #f9f9f9;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
+
+  @media(max-width: 480px){
+    align-items: center;
+    flex-direction: column;
+    padding: 5px 0;
+  }
 `;
   
 export const Left = styled.div`
@@ -26,7 +34,7 @@ export const Left = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const LeftImg = styled.img`
@@ -36,6 +44,7 @@ export const LeftImg = styled.img`
 `;
   
 export const InputGroup = styled.form`
+  width: 95%;
   display: flex;
   flex-direction: column;
 `;
@@ -56,7 +65,7 @@ export const Input = styled.input`
 `;
 
 export const Recuperar = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   a {
     color: #0b57d0;
@@ -66,7 +75,7 @@ export const Recuperar = styled.div`
 `;
   
 export const VisitorMode = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   a {
     color: #0b57d0;
@@ -79,13 +88,17 @@ export const VisitorMode = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 
 export const UsedSpace = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
+
+  @media(max-width: 768px){
+    width: 100%;
+  }
 `;
 
 export const Button = styled.button`
@@ -98,6 +111,10 @@ export const Button = styled.button`
   border-radius: 50px;
   border: none;
   cursor: pointer;
+
+  @media(max-width: 768px){
+    height: 30px;
+  }
 `;
 
 export const Footer = styled.div`

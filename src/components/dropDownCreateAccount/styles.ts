@@ -14,13 +14,17 @@ export const InitialText = styled.span`
   color: #0b57d0;
   cursor: pointer;
   margin-left: 10px;
+
+  @media(max-width: 480px){
+    font-size: 14px;
+  }
 `;
 
 export const DropDownContainer = styled.ul<{ show: boolean }>`
-  width: 240px;
+  width: 200px;
   position: absolute;
   bottom: 100%;  
-  right: 0;
+  left: 0;
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -35,7 +39,6 @@ export const MenuItem = styled.li`
   align-items: center;
   justify-content: space-between;
   border-radius: 10px;
-  padding: 0 10px;
   cursor: pointer;
   height: 45px;
   box-sizing: border-box;

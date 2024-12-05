@@ -15,7 +15,7 @@ export const SubContainer = styled.div`
   justify-content: center;
   width: 90%;
   margin: 10px auto;
-  padding: 20px 50px;
+  padding: 20px 40px;
   background-color: #f9f9f9;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -25,13 +25,7 @@ export const SubContainer = styled.div`
     align-items: center;
     flex-direction: column;
     padding: 5px 0;
-  }
-
-  @media(max-width: 768px){
-    align-items: center;
-    flex-direction: column;
-    padding: 5px 0;
-  }
+  }  
 `;
 
 export const Left = styled.div`
@@ -74,7 +68,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 20px 0;
+  margin: 5px 0;
 `;
 
 export const Button = styled.button`
@@ -88,7 +82,7 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
 
-  @media(max-width: 480px){
+  @media(max-width: 768px){
     height: 30px;
   }
 `;

@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  max-width: 1600px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  height: 100%;
 `;
 
 export const SubContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: center;
   width: 90%;
   margin: 10px auto;
   padding: 20px 50px;
@@ -18,6 +20,18 @@ export const SubContainer = styled.div`
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
+
+  @media(max-width: 480px){
+    align-items: center;
+    flex-direction: column;
+    padding: 5px 0;
+  }
+
+  @media(max-width: 768px){
+    align-items: center;
+    flex-direction: column;
+    padding: 5px 0;
+  }
 `;
 
 export const Left = styled.div`
@@ -73,6 +87,10 @@ export const Button = styled.button`
   border-radius: 50px;
   border: none;
   cursor: pointer;
+
+  @media(max-width: 480px){
+    height: 30px;
+  }
 `;
 
 export const Footer = styled.div`

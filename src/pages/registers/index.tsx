@@ -89,7 +89,7 @@ function SignUp() {
             <SubContainer>
                 <Left>
                     <LeftImg src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" />
-                    <h1>Criar uma conta do google</h1>
+                    <h1>Criar conta</h1>
                     <p>Insira seus dados</p>
                 </Left>
                 <div style={{ width: '50%' }}>

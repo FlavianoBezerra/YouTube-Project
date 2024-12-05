@@ -8,7 +8,8 @@ import {
     SearchInput,
     SearchButton,
     HeaderButton,
-    HeaderLogin
+    HeaderLogin,
+    LogoImg
 } from "./styles";
 import SinoIcon from '../../assets/sino.png';
 import HamburgerIcon from '../../assets/hamburger.png';
@@ -39,7 +40,7 @@ function Header() {
                 <ButtonContainer margin="0 10px 0 0" onClick={() => setMenuSize(!menuSize)}>
                     <ButtonIcon alt="" src={HamburgerIcon} />
                 </ButtonContainer>
-                <img style={{width: '100px', cursor: 'pointer'}} src={YouTubeLogo} alt=""/>
+                <LogoImg src={YouTubeLogo} alt=""/>
             </LogoContainer>
 
             <SearchContainer>
@@ -88,7 +89,10 @@ function Header() {
                 :
                     <>
                         <DropDownMenu />
-                        <HeaderLogin onClick={() => navigate('/login')}><LoginIcon/> Fazer Login</HeaderLogin>                    
+                        <HeaderLogin onClick={() => navigate('/login')}>
+                            <LoginIcon/>
+                            <span>Fazer Login</span>
+                        </HeaderLogin>                    
                     </>
                 }
             </HeaderButton>

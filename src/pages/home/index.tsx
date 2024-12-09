@@ -108,10 +108,10 @@ function Home () {
     return(
       <HomeContainer>
         <Header/>
+        <VideoCategory/>
         <SubContainer>
           <Menu/>
           <Container>
-            <VideoCategory/>
             <ContainerVideos menuSize={menuSize}>
               {videos.map((video) => (
                 <VideoComponent

@@ -8,10 +8,11 @@ export const HomeContainer = styled.div`
 export const SubContainer = styled.div`
     width: 100%;
     display: flex;
+    justify-content: center;
 `;
 
 export const Container = styled.div`
-    width: 100%;
+    width: 90%;
     padding: 55px 25px 10px 25px;
     box-sizing: border-box;
 `;

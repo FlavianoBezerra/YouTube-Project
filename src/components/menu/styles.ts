@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div<{ menuSize: boolean }>`
     width: ${({ menuSize }) => menuSize? '280px' : '100px'};
-    height: calc(100vh - 55px);
+    height: calc(100vh - 110px);
     box-sizing: border-box;
     padding: 10px 10px 10px 10px;
     display: flex;
@@ -10,7 +10,11 @@ export const Container = styled.div<{ menuSize: boolean }>`
     flex-direction: column;
     overflow-y: auto;
     position: sticky;
-    top: 55px;
+    top: 110px;
+    
+    @media(max-width: 768px){
+        display: none;        
+    } 
 `;
 
 export const SubContainer = styled.div<{ menuSize: boolean }>`

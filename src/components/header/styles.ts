@@ -18,15 +18,15 @@ export const LogoContainer = styled.div`
     display: flex;
     align-items: center;
     margin: 0 10px;
+
+    @media(max-width: 768px){
+        display: none;
+    }
 `;
 
 export const LogoImg = styled.img`
     width: 100px;
     cursor: pointer;
-
-    @media(max-width: 480px){
-        display: none;
-    }
 `;
 
 export const ButtonContainer = styled.div<{ margin?: string }>`

@@ -4,6 +4,7 @@ import { useCategoryContext } from "../../context/categoryContext";
 import BackButton from "../../assets/back-button.png";
 import NextButton from "../../assets/next-button.png";
 import { useMenuContext } from "../../context/menuContext";
+import DrawerMenu from "../DrawerMenu";
 
 function VideoCategory() {
 
@@ -69,6 +70,7 @@ function VideoCategory() {
     return (
 
         <Container menuSize={menuSize}>
+            <DrawerMenu />
             <SliderButtons onClick={handleBackClick}>
                 <ButtonIcon src={BackButton} alt="Anterior"/>
             </SliderButtons>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{menuSize: boolean}>`
-  max-width: ${({menuSize}) => menuSize? '82%' : '92%'};
+  max-width: 100%;
   height: 55px;
   position: fixed;
   top: 55px;
@@ -9,22 +9,6 @@ export const Container = styled.div<{menuSize: boolean}>`
   display: flex;
   align-items: center;
   background-color: white;
-
-  @media(max-width: 1024px) {
-    width: 100%;
-  }
-
-  @media(max-width: 834px) {
-    width: 88%;
-  }
-
-  @media(max-width: 688px) {
-    width: 80%;
-  }
-
-  @media(max-width: 414px) {
-    width: 100%;
-  }
 `;
 
 export const Button = styled.button`

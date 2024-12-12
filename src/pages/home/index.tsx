@@ -10,6 +10,7 @@ import Header from "../../components/header";
 import Menu from "../../components/menu";
 import VideoCategory from "../../components/videoCategories";
 import { useCategoryContext } from "../../context/categoryContext";
+import Footer from "../../components/footer";
 
 
 function Home () {
@@ -141,6 +142,7 @@ function Home () {
             </ShortsContainer>
           </Container>
         </SubContainer>
+        <Footer />
       </HomeContainer>
     )
 }

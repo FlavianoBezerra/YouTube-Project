@@ -57,6 +57,8 @@ function DropDownMenu() {
     { icon: <SendFeedbackIcon/>, link: '/send_feedback', label: 'Enviar feedback' },
   ];
 
+  const visibleMenuItems = login ? menuItems : menuItems.slice(5);
+
   return (
     <Container ref={DropDownRef} onClick={ () => setIsOpen(!isOpen) }>      
       {login ? <DropDownImg alt="No img" src={NoImg} /> : <DropDownIcon/>}     
@@ -76,7 +78,7 @@ function DropDownMenu() {
             </>
             ) : null
           }
-          {menuItems.map((item, index) => (
+          {visibleMenuItems.map((item, index) => (
             <>
               <MenuItem key={index} onClick={() => {
                 if (typeof item.link === 'function') {

@@ -43,7 +43,7 @@ export const DropDownContainer = styled.ul<{ show: boolean }>`
   border-radius: 10px;
   display: ${({ show }) => (show ? "block" : "none")};
   overflow-y: auto;
-  height: calc(100vh - 40vh);
+  height: calc(100vh - 60vh);
 `;
 
 export const UserInfo = styled.div`

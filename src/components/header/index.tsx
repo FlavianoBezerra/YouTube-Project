@@ -9,7 +9,10 @@ import {
     SearchButton,
     HeaderButton,
     HeaderLogin,
-    LogoImg
+    LogoImg,
+    Main,
+    Responsiveness,
+    HeaderButtonResponsiveness
 } from "./styles";
 import SinoIcon from '../../assets/sino.png';
 import HamburgerIcon from '../../assets/hamburger.png';
@@ -24,6 +27,7 @@ import { UserContext } from "../../context/userContext";
 import { useContext, useRef, useState } from "react";
 import DropDownMenu from "../dropDownMenu";
 import { useSearchContext } from "../../context/searchContext";
+import YoutubePremiumIcon from "../../icons/youtubePremium";
 
 function Header() {
     const { setSearch } = useSearchContext();
@@ -37,10 +41,15 @@ function Header() {
     return (
         <Container>
             <LogoContainer>
-                <ButtonContainer margin="0 10px 0 0" onClick={() => setMenuSize(!menuSize)}>
-                    <ButtonIcon alt="" src={HamburgerIcon} />
-                </ButtonContainer>
-                <LogoImg src={YouTubeLogo} alt=""/>
+                <Main>
+                    <ButtonContainer margin="0 10px 0 0" onClick={() => setMenuSize(!menuSize)}>
+                        <ButtonIcon alt="" src={HamburgerIcon} />
+                    </ButtonContainer>
+                    <LogoImg src={YouTubeLogo} alt=""/>
+                </Main>
+                <Responsiveness>
+                    <YoutubePremiumIcon />
+                </Responsiveness>
             </LogoContainer>
 
             <SearchContainer>
@@ -78,12 +87,14 @@ function Header() {
             <HeaderButton>
                 {login?
                     <>
-                        <ButtonContainer onClick={() => navigate('/studio')}>
-                            <StudioIcon />
-                        </ButtonContainer>
                         <ButtonContainer>
                             <ButtonIcon alt="" src={SinoIcon} />
                         </ButtonContainer>
+                        <HeaderButtonResponsiveness>
+                            <ButtonContainer onClick={() => navigate('/studio')}>
+                                <StudioIcon />
+                            </ButtonContainer>
+                        </HeaderButtonResponsiveness>
                         <DropDownMenu />
                     </>                    
                 :
@@ -92,7 +103,7 @@ function Header() {
                         <HeaderLogin onClick={() => navigate('/login')}>
                             <LoginIcon/>
                             <span>Fazer Login</span>
-                        </HeaderLogin>                    
+                        </HeaderLogin>
                     </>
                 }
             </HeaderButton>

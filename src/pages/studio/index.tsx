@@ -4,6 +4,7 @@ import { AddVideoButton, Button, ButtonContainer, CloseButton, Container, Contai
 import Header from "../../components/header"
 import { UserContext } from "../../context/userContext"
 import StudioComponent from "../../components/studioComponent"
+import { useMenuContext } from "../../context/menuContext"
 
 function Studio() {
 
@@ -23,6 +24,7 @@ function Studio() {
   const [videoTitleError, setVideoTitleError] = useState<string | null>(null);
   const [videoDescriptionError, setVideoDescriptionError] = useState<string | null>(null);
   const { token, user, userVideos, createVideos } = useContext(UserContext);
+  const { menuSize } = useMenuContext();
   const imageRef = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
@@ -156,11 +158,11 @@ function Studio() {
       <SubContainer>
         <Menu />
         <Container>
-          <UserName>{user && user.name ? user.name : 'Erro ao buscar nome!'}</UserName>
+          <UserName>{user && user.name ? user.name : 'Faça login para continuar.'}</UserName>
           <AddVideoButton onClick={() => setHideModal(false)}>cadastrar video</AddVideoButton>
           <Modal hideModal={hideModal}>
             <ModalContent>
-              <CloseButton onClick={closeModal}>X</CloseButton>
+              
               <ModalTitle>Enviar novo vídeo</ModalTitle>
               <InputGroup onSubmit={handleSubmit}>
                 <Label htmlFor="url">URL do vídeo</Label>              
@@ -195,14 +197,19 @@ function Studio() {
                   required
                 />
                 {videoDescriptionError && <span style={{ color: 'red' }}>{videoDescriptionError}</span>}
-           
-                <ButtonContainer>
-                  <Button className="enter" type="submit" disabled={loading}>Adicionar video</Button>                  
-                </ButtonContainer>
+                
+                <div style={{ display: 'flex' }}>
+                  <ButtonContainer>
+                    <Button className="enter" type="submit" disabled={loading}>Adicionar video</Button>                  
+                  </ButtonContainer>
+                  <ButtonContainer>
+                    <CloseButton onClick={closeModal}>X</CloseButton>                  
+                  </ButtonContainer>
+                </div>
               </InputGroup>
             </ModalContent>
           </Modal>
-          <ContainerVideos>
+          <ContainerVideos menuSize={menuSize}>
             {Array.isArray(userVideos) ? (
               userVideos.length > 0 ? (
                 userVideos.map((video: Videos) => (
@@ -215,14 +222,10 @@ function Studio() {
                   />
                 ))
               ) : (
-                <>                
-                  <div></div>
-                  <h2>Esse canal não possui vídeos</h2>
-                  <div></div>
-                </>
+                <h2>Not Found</h2>
               )
             ) : (
-              <h1>Esse canal não possui vídeos</h1>
+              <h2>Não há vídeos para exibir.</h2>
             )}
           </ContainerVideos>
         </Container>

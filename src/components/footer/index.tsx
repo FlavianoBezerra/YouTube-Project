@@ -4,7 +4,7 @@ import RegistrationIcon from "../../icons/registration";
 import ShortsIcon from "../../icons/shorts";
 import StartIcon from "../../icons/start";
 import StudioIcon from "../../icons/studio";
-import { Container, FooterLogin, Img, Label, SubContainer } from "./styles";
+import { FooterContainer, FooterLogin, Img, Label, SubContainer } from "./styles";
 import { UserContext } from "../../context/userContext";
 import NoImg from "../../assets/no-img.png";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ function Footer() {
     const navigate = useNavigate();
 
     return (
-        <Container>
+        <FooterContainer>
             <SubContainer onClick={() => navigate('/')}>
                 <StartIcon />
                 <Label>Início</Label>
@@ -47,7 +47,7 @@ function Footer() {
                     </>              
                 }
             </SubContainer>
-        </Container>
+        </FooterContainer>
     )
 }
 

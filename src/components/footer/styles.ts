@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.footer`
+export const FooterContainer = styled.footer`
     width: 100%;
     height: 55px;
     background: #fff;
     padding: 0 10px;
     box-sizing: border-box;
     display: none;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     z-index: 1;
 
@@ -18,12 +18,6 @@ export const Container = styled.footer`
     }
 `;
 
-export const Img = styled.img`
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-`;
-
 export const SubContainer = styled.div`
     height: auto;
     display: flex;
@@ -31,6 +25,12 @@ export const SubContainer = styled.div`
     flex-direction: column;
     padding: 12px 0;
     cursor: pointer;
+`;
+
+export const Img = styled.img`
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
 `;
 
 export const Label = styled.span`

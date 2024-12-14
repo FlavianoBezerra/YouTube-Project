@@ -5,6 +5,7 @@ import Header from "../../components/header"
 import { UserContext } from "../../context/userContext"
 import StudioComponent from "../../components/studioComponent"
 import { useMenuContext } from "../../context/menuContext"
+import Footer from "../../components/footer"
 
 function Studio() {
 
@@ -230,6 +231,7 @@ function Studio() {
           </ContainerVideos>
         </Container>
       </SubContainer>
+      <Footer />
     </StudioContainer>
   )
 }

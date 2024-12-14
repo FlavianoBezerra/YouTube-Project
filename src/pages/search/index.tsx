@@ -6,6 +6,7 @@ import moment from "moment";
 import Header from "../../components/header";
 import Menu from "../../components/menu";
 import VideoComponent from "../../components/searchVideos";
+import Footer from "../../components/footer";
 
 function Search () {
 
@@ -104,6 +105,7 @@ function Search () {
             ))}
         </Container>
       </SubContainer>
+      <Footer />
     </SearchContainer>
   )
 }

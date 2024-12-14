@@ -1,54 +1,42 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 90%;
+  width: 100%;
   cursor: pointer;
   display: flex;
   column-gap: 10px;
 
-  @media(max-width: 600px) {
+  @media(max-width: 768px) {
     flex-direction: column;
-    width: 98%;
   }
 `;
 
 export const Banner = styled.div`
-  min-width: 300px;
-  max-width: 300px;
   height: 160px;
+  width: 40%;
   border-radius: 12px;
   background-size: cover;
   background-position: 50% 50%;
 
-  @media(max-width: 600px) {
-    min-width: 480px;
-    max-width: 480px;
-    height: 260px;
+  @media(max-width: 768px){
+    width: 100%;
   }
-
-  @media(max-width: 414px) {
-    min-width: 100%;
-    max-width: 100%;
-    height: 190px;
-  }
-`
+`;
 
 export const TitleContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
 
-  @media(max-width: 600px) {
+  @media(max-width: 768px) {
     margin-top: 5px;
   }
 `;
 
 export const ChannelImage = styled.div`
   background-color: beige;
-  min-width: 25px;
-  max-width: 25px;
-  min-height: 25px;
-  max-height: 25px;
+  height: 25px;
+  width: 25px;
   font-size: 12px;
   border-radius: 50%;
   display: flex;
@@ -92,7 +80,7 @@ export const DescriptionContainer = styled.div`
   margin-top: 20px;
   text-align: justify;
 
-  @media(max-width: 600px) {
+  @media(max-width: 768px) {
     margin-top: 0px;
   }
 `;

@@ -149,7 +149,7 @@ function Menu () {
                     <MenuFooter>
                         <FooterBoxOne>Sobre Imprensa<br/>Direitos autorais Fale Conosco<br/>Criadores Anunciar<br/>Desenvolvedores</FooterBoxOne>
                         <FooterBoxOne>Termos Privacidade<br/>Política de Segurança &<br/>Como funciona o YouTube<br/>Testar novos recursos</FooterBoxOne>
-                        <FooterBoxTwo>© 2024 Flaviano Bezerra</FooterBoxTwo>
+                        <FooterBoxTwo>© 2025 Flaviano Bezerra</FooterBoxTwo>
                     </MenuFooter>
                 </>
             ) :

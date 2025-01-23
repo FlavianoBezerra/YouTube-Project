@@ -44,7 +44,7 @@ export const LeftImg = styled.img`
 `;
 
 
-export const InputGroup = styled.div`
+export const InputGroup = styled.form`
   display: flex;
   flex-direction: column;
 `;

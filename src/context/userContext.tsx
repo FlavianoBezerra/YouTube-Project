@@ -100,18 +100,17 @@ export const UserStorage = ({ children }: any) => {
         }
     };
 
-    const handleRegister = (email: string, password: string, name: string) => {
-        return api.post('/user/sign-up', { email, password, name })
-            .then(({ data }) => {
-                localStorage.setItem('token', data.token);
-                setToken(data.token);
-                getUser(data.token);
-                return data;
-            })
-            .catch((error) => {
-                console.log('Não foi possível fazer o cadastro', error);
-                throw error;
-            });
+    const handleRegister = async (email: string, password: string, name: string) => {
+        try {
+            const { data } = await api.post('/user/sign-up', { email, password, name });
+            localStorage.setItem('token', data.token);
+            setToken(data.token);
+            getUser(data.token);
+            return data;
+        } catch (error) {
+            console.log('Não foi possível fazer o cadastro', error);
+            throw error;
+        }
     };
 
     return (
